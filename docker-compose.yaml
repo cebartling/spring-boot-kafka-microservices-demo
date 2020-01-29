@@ -272,6 +272,8 @@ services:
 
   profile-db:
     image: postgres:12.1-alpine
+    hostname: profile-db
+    container_name: profile-db
     # command: postgres -c 'encrypt.key=dfd76a78d6fasdf68df'
     restart: always
     volumes:
