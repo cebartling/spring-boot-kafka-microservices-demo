@@ -44,6 +44,9 @@ dependencies {
 	}
 	testImplementation 'org.springframework.integration:spring-integration-test'
 	testImplementation 'org.springframework.kafka:spring-kafka-test'
+	liquibaseRuntime 'org.liquibase:liquibase-core'
+	liquibaseRuntime 'org.liquibase:liquibase-groovy-dsl'
+	liquibaseRuntime 'org.postgresql:postgresql'
 }
 
 test {
