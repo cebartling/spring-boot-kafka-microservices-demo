@@ -6,7 +6,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
          http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
 
-    <include file="changelog/20200129023713-profile-table.xml" relativeToChangelogFile="true"/>
-    <include file="changelog/20200129230746-foobar-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20200129023713-profiles-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20200129230746-preferences-table.xml" relativeToChangelogFile="true"/>
+    <include file="changelog/20200130232353-profile-preferences-table.xml" relativeToChangelogFile="true"/>
 
 </databaseChangeLog>
