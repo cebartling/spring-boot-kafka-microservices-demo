@@ -19,7 +19,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name ="preferences")
+@Table(name = "preferences")
 public class Preference {
 
     @Id

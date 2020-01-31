@@ -25,7 +25,7 @@ import java.util.UUID;
 
 @Data
 @Entity
-@Table(name ="profile_preferences")
+@Table(name = "profile_preferences")
 public class ProfilePreference {
 
     @Id
