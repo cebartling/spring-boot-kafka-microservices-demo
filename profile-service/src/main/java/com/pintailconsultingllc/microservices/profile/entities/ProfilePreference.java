@@ -1,31 +1,32 @@
 package com.pintailconsultingllc.microservices.profile.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Type;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import java.time.OffsetDateTime;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.UUID;
 
 @Data
 @Entity
-@Table(name = "profiles")
-public class Profile {
+@Table(name ="profile_preferences")
+public class ProfilePreference {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,13 +34,17 @@ public class Profile {
     private UUID id;
 
     @NotNull
-    private String firstName;
+    private String value;
 
-    @NotNull
-    private String lastName;
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "profile_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private Profile profile;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "profile")
-    private Set<ProfilePreference> profilePreferences = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name = "preference_id", nullable = false)
+    @OnDelete(action = OnDeleteAction.NO_ACTION)
+    private Preference preference;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created_at", nullable = false, updatable = false)
