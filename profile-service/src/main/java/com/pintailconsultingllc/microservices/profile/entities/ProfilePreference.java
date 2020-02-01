@@ -4,13 +4,8 @@ import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.annotations.Type;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -19,14 +14,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @Data
 @Entity
-@EntityListeners(AuditingEntityListener.class)
 @Table(name = "profile_preferences")
-public class ProfilePreference {
+public class ProfilePreference extends EntitySupport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -45,12 +38,4 @@ public class ProfilePreference {
     @JoinColumn(name = "preference_id", nullable = false)
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private Preference preference;
-
-    @Column(name = "created_at", nullable = false, updatable = false)
-    @CreatedDate
-    private OffsetDateTime createdAt;
-
-    @Column(name = "updated_at", nullable = false)
-    @LastModifiedDate
-    private OffsetDateTime updatedAt;
 }
